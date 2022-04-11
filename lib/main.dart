@@ -55,25 +55,27 @@ class BulletHell extends FlameGame {
       MoveEffect.to(
           Vector2(size.x / 2.0, 500),
           EffectController(
-              duration: 3, infinite: false, curve: Curves.easeInCubic)),
+              duration: 2, infinite: false, curve: Curves.bounceIn)),
       MoveEffect.to(
           Vector2(size.x / 2.0, 300),
           EffectController(
               duration: 2, infinite: false, curve: Curves.easeInExpo))
     ], infinite: false));
 
+    var counter = 10;
     async.Timer.periodic(const Duration(seconds: 5), (timer) {
       async.Timer.periodic(const Duration(milliseconds: 200), (timer) {
-        if (timer.tick == 15) {
+        if (timer.tick == counter) {
+          counter++;
           timer.cancel();
         }
         for (int i = 0; i < 11; i++) {
           var other = (i % 11);
-          var bullet = Bullet1(boss, (pi / 180) * other * 18)
+          var bullet = Bullet1(boss, pi * other * 0.1)
             ..position = Vector2(boss.width / 2, boss.height / 2);
           boss.add(bullet);
 
-          var bullet2 = Bullet1(boss, (-pi / 180) * other * 18)
+          var bullet2 = Bullet1(boss, -pi * other * 0.1)
             ..position = Vector2(boss.width / 2, boss.height / 2);
           boss.add(bullet2);
         }

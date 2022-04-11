@@ -25,19 +25,28 @@ class BulletHell extends FlameGame {
 
     await addBoss();
     await addParallaxBackground();
-
   }
 
   Future<void> addBoss() async {
-    var spriteComponent = SpriteComponent(
-      sprite: Sprite(await images.load('boss.png'),
-          srcPosition: Vector2(0, 0), srcSize: Vector2(101, 64)),
-    )
-      ..position = Vector2(size.x / 2.0 + 25, 300)
-      ..scale = Vector2(0.5, 0.5)
-      ..angle = pi;
+    var imageSize = Vector2(101, 64);
+    final running = await loadSpriteAnimation(
+      'boss.png',
+      SpriteAnimationData.sequenced(
+        amount: 4,
+        textureSize: imageSize,
+        stepTime: 0.5,
+      ),
+    );
 
-    add(spriteComponent);
+    var spriteAnimationComponent = SpriteAnimationComponent(
+        animation: running,
+        anchor: Anchor.center,
+        size: imageSize,
+        angle: pi,
+        position: Vector2(size.x / 2.0, 300),
+        scale: Vector2(0.5, 0.5));
+
+    add(spriteAnimationComponent);
   }
 
   Future<void> addParallaxBackground() async {

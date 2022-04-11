@@ -42,6 +42,7 @@ class BulletHell extends FlameGame {
     );
 
     var boss = SpriteAnimationComponent(
+        priority: 20,
         animation: running,
         anchor: Anchor.center,
         size: imageSize,
@@ -50,7 +51,30 @@ class BulletHell extends FlameGame {
         scale: Vector2(0.5, 0.5));
 
     async.Timer.periodic(const Duration(milliseconds: 100), (timer) {
-      var bullet = Bullet1()..position = boss.position;
+      var random = Random();
+      var bullet = Bullet1(
+          boss, (pi / 180) * random.nextInt(180) * (random.nextBool() ? 1 : -1))
+        ..position = Vector2(boss.width / 2, boss.height / 2);
+      boss.add(bullet);
+    });
+    async.Timer.periodic(const Duration(milliseconds: 100), (timer) {
+      var random = Random();
+      var bullet = Bullet1(
+          boss, (pi / 180) * random.nextInt(180) * (random.nextBool() ? 1 : -1))
+        ..position = Vector2(boss.width / 2, boss.height / 2);
+      boss.add(bullet);
+    });    async.Timer.periodic(const Duration(milliseconds: 100), (timer) {
+      var random = Random();
+      var bullet = Bullet1(
+          boss, (pi / 180) * random.nextInt(180) * (random.nextBool() ? 1 : -1))
+        ..position = Vector2(boss.width / 2, boss.height / 2);
+      boss.add(bullet);
+    });
+    async.Timer.periodic(const Duration(milliseconds: 100), (timer) {
+      var random = Random();
+      var bullet = Bullet1(
+          boss, (pi / 180) * random.nextInt(180) * (random.nextBool() ? 1 : -1))
+        ..position = Vector2(boss.width / 2, boss.height / 2);
       boss.add(bullet);
     });
     add(boss);

@@ -4,6 +4,7 @@ import 'package:bullet_hell/Bullet1.dart';
 import 'package:flame/components.dart';
 
 extension BulletExtension on PositionComponent {
+/*
   async.Timer shoot2({
     Vector2? scale,
   }) {
@@ -14,4 +15,5 @@ extension BulletExtension on PositionComponent {
       parent!.add(bullet);
     });
   }
+*/
 }

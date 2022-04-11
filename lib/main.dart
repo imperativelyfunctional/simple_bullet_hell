@@ -12,17 +12,24 @@ Future<void> main() async {
   runApp(GameWidget(game: bulletHell));
 }
 
+late Vector2 viewPortSize;
+
 class BulletHell extends FlameGame {
   @override
   Future<void> onLoad() async {
     super.onLoad();
+    viewPortSize = size;
     camera.viewport = FixedResolutionViewport(size);
 
+    await addParallaxBackground();
+  }
+
+  Future<void> addParallaxBackground() async {
     final layerInfo = {
-      'background_1.png': 5.0,
-      'background_2.png': 0.5,
-      'background_3.png': 1.0,
-      'background_4.png': 1.5,
+      'background_1.png': 6.0,
+      'background_2.png': 8.5,
+      'background_3.png': 12.0,
+      'background_4.png': 20.5,
     };
 
     final layers = layerInfo.entries.map(

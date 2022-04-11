@@ -50,33 +50,16 @@ class BulletHell extends FlameGame {
         position: Vector2(size.x / 2.0, 300),
         scale: Vector2(0.5, 0.5));
 
-    async.Timer.periodic(const Duration(milliseconds: 100), (timer) {
-      var random = Random();
-      var bullet = Bullet1(
-          boss, (pi / 180) * random.nextInt(180) * (random.nextBool() ? 1 : -1))
-        ..position = Vector2(boss.width / 2, boss.height / 2);
-      boss.add(bullet);
-    });
-    async.Timer.periodic(const Duration(milliseconds: 100), (timer) {
-      var random = Random();
-      var bullet = Bullet1(
-          boss, (pi / 180) * random.nextInt(180) * (random.nextBool() ? 1 : -1))
-        ..position = Vector2(boss.width / 2, boss.height / 2);
-      boss.add(bullet);
-    });    async.Timer.periodic(const Duration(milliseconds: 100), (timer) {
-      var random = Random();
-      var bullet = Bullet1(
-          boss, (pi / 180) * random.nextInt(180) * (random.nextBool() ? 1 : -1))
-        ..position = Vector2(boss.width / 2, boss.height / 2);
-      boss.add(bullet);
-    });
-    async.Timer.periodic(const Duration(milliseconds: 100), (timer) {
-      var random = Random();
-      var bullet = Bullet1(
-          boss, (pi / 180) * random.nextInt(180) * (random.nextBool() ? 1 : -1))
-        ..position = Vector2(boss.width / 2, boss.height / 2);
-      boss.add(bullet);
-    });
+    for (int i = 0; i < 10; i++) {
+      async.Timer.periodic(const Duration(milliseconds: 50), (timer) {
+        var random = Random();
+        var bullet = Bullet1(boss,
+            (pi / 180) * random.nextInt(180) * (random.nextBool() ? 1 : -1))
+          ..position = Vector2(boss.width / 2, boss.height / 2);
+        boss.add(bullet);
+      });
+    }
+
     add(boss);
   }
 

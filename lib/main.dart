@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flame/components.dart';
 import 'package:flame/flame.dart';
 import 'package:flame/game.dart';
@@ -22,6 +24,16 @@ class BulletHell extends FlameGame {
     camera.viewport = FixedResolutionViewport(size);
 
     await addParallaxBackground();
+
+    var spriteComponent = SpriteComponent(
+      sprite: Sprite(await images.load('boss.png'),
+          srcPosition: Vector2(0, 0), srcSize: Vector2(101, 64)),
+    )
+      ..position = Vector2(size.x / 2.0 + 25, 300)
+      ..scale = Vector2(0.5, 0.5)
+      ..angle = pi;
+
+    add(spriteComponent);
   }
 
   Future<void> addParallaxBackground() async {

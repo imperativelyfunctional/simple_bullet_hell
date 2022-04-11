@@ -1,3 +1,4 @@
+import 'dart:async' as async;
 import 'dart:math';
 
 import 'package:flame/components.dart';
@@ -5,6 +6,8 @@ import 'package:flame/flame.dart';
 import 'package:flame/game.dart';
 import 'package:flame/parallax.dart';
 import 'package:flutter/cupertino.dart';
+
+import 'Bullet1.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -38,7 +41,7 @@ class BulletHell extends FlameGame {
       ),
     );
 
-    var spriteAnimationComponent = SpriteAnimationComponent(
+    var boss = SpriteAnimationComponent(
         animation: running,
         anchor: Anchor.center,
         size: imageSize,
@@ -46,7 +49,11 @@ class BulletHell extends FlameGame {
         position: Vector2(size.x / 2.0, 300),
         scale: Vector2(0.5, 0.5));
 
-    add(spriteAnimationComponent);
+    async.Timer.periodic(const Duration(milliseconds: 100), (timer) {
+      var bullet = Bullet1()..position = boss.position;
+      boss.add(bullet);
+    });
+    add(boss);
   }
 
   Future<void> addParallaxBackground() async {

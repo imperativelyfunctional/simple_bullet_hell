@@ -23,8 +23,12 @@ class BulletHell extends FlameGame {
     viewPortSize = size;
     camera.viewport = FixedResolutionViewport(size);
 
+    await addBoss();
     await addParallaxBackground();
 
+  }
+
+  Future<void> addBoss() async {
     var spriteComponent = SpriteComponent(
       sprite: Sprite(await images.load('boss.png'),
           srcPosition: Vector2(0, 0), srcSize: Vector2(101, 64)),

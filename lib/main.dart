@@ -64,6 +64,7 @@ class BulletHell extends FlameGame {
 
     var counter = 10;
     async.Timer.periodic(const Duration(seconds: 5), (timer) {
+      double speed = 100;
       async.Timer.periodic(const Duration(milliseconds: 200), (timer) {
         if (timer.tick == counter) {
           counter++;
@@ -71,11 +72,12 @@ class BulletHell extends FlameGame {
         }
         for (int i = 0; i < 11; i++) {
           var other = (i % 11);
-          var bullet = Bullet1(boss, pi * other * 0.1)
+          speed += i * 0.5;
+          var bullet = Bullet1(boss, pi * other * 0.1, speed: speed)
             ..position = Vector2(boss.width / 2, boss.height / 2);
           boss.add(bullet);
 
-          var bullet2 = Bullet1(boss, -pi * other * 0.1)
+          var bullet2 = Bullet1(boss, -pi * other * 0.1, speed: speed)
             ..position = Vector2(boss.width / 2, boss.height / 2);
           boss.add(bullet2);
         }

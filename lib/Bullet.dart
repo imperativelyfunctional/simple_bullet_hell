@@ -4,8 +4,9 @@ import 'package:flame/components.dart';
 class Bullet1 extends SpriteAnimationComponent with HasGameRef, BulletsMixin {
   final SpriteAnimationComponent boss;
   final double movingDirection;
+  final double speed;
 
-  Bullet1(this.boss, this.movingDirection) : super();
+  Bullet1(this.boss, this.movingDirection, {this.speed = 100}) : super();
 
   @override
   Future<void>? onLoad() async {
@@ -25,7 +26,7 @@ class Bullet1 extends SpriteAnimationComponent with HasGameRef, BulletsMixin {
   @override
   void update(double dt) {
     boss.priority = boss.priority++;
-    moveWithAngle(movingDirection, 100 * dt);
+    moveWithAngle(movingDirection, speed * dt);
     super.update(dt);
   }
 }

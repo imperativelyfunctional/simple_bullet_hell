@@ -72,8 +72,9 @@ class BulletHell extends FlameGame {
         }
         for (int i = 0; i < 37; i++) {
           var bullet = Bullet1(boss, (pi / 37 - pi) * i, speed: speed)
-            ..position = Vector2(boss.width / 2, boss.height / 2);
-          boss.add(bullet);
+            ..position = boss.position
+            ..scale = boss.scale;
+          add(bullet);
         }
       });
     });
